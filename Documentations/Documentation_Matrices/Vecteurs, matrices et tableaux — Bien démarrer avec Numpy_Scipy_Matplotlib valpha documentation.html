@@ -1,0 +1,690 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://math.mad.free.fr/depot/numpy/base.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>Vecteurs, matrices et tableaux — Bien démarrer avec Numpy/Scipy/Matplotlib valpha documentation</title>
+    <link rel="stylesheet" href="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/default.css" type="text/css">
+    <link rel="stylesheet" href="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/pygments.css" type="text/css">
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'alpha',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script><style type="text/css"></style>
+    <script type="text/javascript" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/jquery.js"></script>
+    <script type="text/javascript" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/doctools.js"></script>
+    <script type="text/javascript" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/translations.js"></script>
+    <link rel="top" title="Bien démarrer avec Numpy/Scipy/Matplotlib valpha documentation" href="http://math.mad.free.fr/depot/numpy/index.html">
+    <link rel="next" title="Calcul numérique matriciel" href="http://math.mad.free.fr/depot/numpy/calmat.html">
+    <link rel="prev" title="Introduction" href="http://math.mad.free.fr/depot/numpy/intro.html"> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="http://math.mad.free.fr/depot/numpy/genindex.html" title="Index général" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="http://math.mad.free.fr/depot/numpy/calmat.html" title="Calcul numérique matriciel" accesskey="N">suivant</a> |</li>
+        <li class="right">
+          <a href="http://math.mad.free.fr/depot/numpy/intro.html" title="Introduction" accesskey="P">précédent</a> |</li>
+        <li><a href="http://math.mad.free.fr/depot/numpy/essai.html">Bien démarrer avec Numpy/Scipy/Matplotlib valpha documentation</a> »</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="vecteurs-matrices-et-tableaux">
+<h1>Vecteurs, matrices et tableaux<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#vecteurs-matrices-et-tableaux" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="les-bases">
+<h2>Les bases<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#les-bases" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Numpy ajoute le type <tt class="docutils literal"><span class="pre">array</span></tt> qui est similaire à une liste (<tt class="docutils literal"><span class="pre">list</span></tt>) avec
+la condition supplémentaire que tous les éléments sont du même type.
+Nous concernant ce sera donc un tableau d’entiers, de flottants voire
+de booléens.</p>
+<p>Une première méthode consiste à convertir une liste en un tableau via la commande
+<tt class="docutils literal"><span class="pre">array</span></tt>. Le deuxième argument est optionnel et spécifie le type des éléments du tableau.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span> <span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">8</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 1., 4., 5., 8.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&lt;type 'numpy.ndarray'&gt;</span>
+</pre></div>
+</div>
+<p>Un tableau peut être multidimensionnel ; ici dimension 3</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">],[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">]],[[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">],[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([[[1, 2],</span>
+<span class="go">        [1, 2]],</span>
+
+<span class="go">       [[1, 2],</span>
+<span class="go">        [1, 2]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&lt;type 'numpy.ndarray'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">]</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>Nous limiterons notre étude aux tableaux {uni,bi}-dimensionnels.
+En Python  modifier une donnée d’une extraction d’un tableau entraîne
+aussi une modification du tableau initial ! Si nécessaire la fonction <tt class="docutils literal"><span class="pre">np.copy(a)</span></tt> ou <tt class="docutils literal"><span class="pre">a.copy()</span></tt>
+permet de faire une copie d’un tableau <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="mf">1</span><span class="p">:</span><span class="mf">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([2, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([1, 2, 0, 4, 5])   # a  modifié</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mf">1</span><span class="p">:</span><span class="mf">3</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>      <span class="c"># première méthode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bb</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mf">1</span><span class="p">:</span><span class="mf">3</span><span class="p">])</span>   <span class="c"># seconde méthode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bb</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">array([1, 2, 3, 4, 5])   # c non modifié</span>
+</pre></div>
+</div>
+<p>Comme pour les listes le <cite>slicing</cite> extrait les tableaux</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mf">2</span><span class="p">:</span><span class="mf">9</span><span class="p">:</span><span class="mf">3</span><span class="p">]</span> <span class="c"># [début:fin:pas]</span>
+<span class="go">array([2, 5, 8])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mf">2</span><span class="p">:</span><span class="mf">8</span><span class="p">:</span><span class="mf">3</span><span class="p">]</span> <span class="c"># le dernier élément n'est pas inclus</span>
+<span class="go">array([2, 5])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:</span><span class="mf">5</span><span class="p">]</span>    <span class="c"># le dernier élément n'est pas inclus</span>
+<span class="go">array([0, 1, 2, 3, 4])</span>
+</pre></div>
+</div>
+<p>Dans l’instruction <tt class="docutils literal"><span class="pre">[début:fin:pas]</span></tt> deux des arguments peuvent être omis : par défaut l’indice de
+début vaut 0 (le 1er élément), l’indice de fin est celui du dernier élément et le pas vaut 1.
+Il faut tout de même noter une différence entre <tt class="docutils literal"><span class="pre">[2:9]</span></tt> et <tt class="docutils literal"><span class="pre">[2:]</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mf">2</span><span class="p">:</span><span class="mf">9</span><span class="p">]</span>
+<span class="go">array([2, 3, 4, 5, 6, 7, 8])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mf">2</span><span class="p">:]</span>
+<span class="go">array([2, 3, 4, 5, 6, 7, 8, 9])</span>
+</pre></div>
+</div>
+<p>Un <tt class="docutils literal"><span class="pre">pas</span></tt> négatif inversera l’ordre du tableau et les tableaux étant considérés cycliques
+la commande <tt class="docutils literal"><span class="pre">a[-2::1]</span></tt> extrait l’avant dernier et dernier élément. Pour un tableau bi-dimensionnel
+on peut bien sûr jouer avec les deux indices.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="mf">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[[ 1.  0.  0.  0.  0.]</span>
+<span class="go"> [ 0.  1.  0.  0.  0.]</span>
+<span class="go"> [ 0.  0.  1.  0.  0.]</span>
+<span class="go"> [ 0.  0.  0.  1.  0.]</span>
+<span class="go"> [ 0.  0.  0.  0.  1.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:</span><span class="mf">3</span><span class="p">,:</span><span class="mf">4</span><span class="p">]</span><span class="o">=</span><span class="mf">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[::</span><span class="mf">3</span><span class="p">,::</span><span class="mf">4</span><span class="p">]</span><span class="o">=</span><span class="mf">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:,</span><span class="mf">3</span><span class="p">]</span><span class="o">=</span><span class="mf">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[[ 5.  4.  4.  6.  5.]</span>
+<span class="go"> [ 4.  4.  4.  6.  0.]</span>
+<span class="go"> [ 4.  4.  4.  6.  0.]</span>
+<span class="go"> [ 5.  0.  0.  6.  5.]</span>
+<span class="go"> [ 0.  0.  0.  6.  1.]]</span>
+</pre></div>
+</div>
+<p>Une autre méthode d’extraction consiste à écrire <tt class="docutils literal"><span class="pre">a[b]</span></tt> où <tt class="docutils literal"><span class="pre">b</span></tt>
+est un tableau d’entiers qui correspondra aux indices à extraire
+et <tt class="docutils literal"><span class="pre">a</span></tt> un vecteur. Pour les matrices c’est <tt class="docutils literal"><span class="pre">a[b,c]</span></tt> et on prend les
+indices de ligne dans <tt class="docutils literal"><span class="pre">b</span></tt>, les indices de colonnes dans <tt class="docutils literal"><span class="pre">c</span></tt>, successivement.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2</span><span class="p">,</span><span class="mf">4</span><span class="p">,</span><span class="mf">6</span><span class="p">,</span><span class="mf">8</span><span class="p">],</span><span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">1</span><span class="p">],</span><span class="nb">int</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+<span class="go">array([ 2.,  2.,  4.,  8.,  6.,  4.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">0</span><span class="p">],</span><span class="nb">int</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">],</span><span class="nb">int</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
+<span class="go">array([ 2.,  4.,  8.,  8.,  4.])</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Numpy/Scipy proposent aussi le type <tt class="docutils literal"><span class="pre">mat</span></tt> comme matrice, exclusivement un tableau bi-dimensionnel.
+Comme les fonctions telles que <tt class="docutils literal"><span class="pre">ones</span></tt>, <tt class="docutils literal"><span class="pre">eye</span></tt> retournent un objet de type <tt class="docutils literal"><span class="pre">array</span></tt> nous n’utiliserons pas dans la suite le type <tt class="docutils literal"><span class="pre">mat</span></tt>. Il permet cependant de saisir les matrices à-la-Matlab et de
+faire le produit matriciel par le simple symbole <tt class="docutils literal"><span class="pre">*</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="s">'[1 2 4 ; 3 4 5.]'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="s">'[2. ; 4 ; 6]'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[[ 1.  2.  4.]</span>
+<span class="go"> [ 3.  4.  5.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
+<span class="go">[[ 2.]</span>
+<span class="go"> [ 4.]</span>
+<span class="go"> [ 6.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+<span class="go">[[ 34.]</span>
+<span class="go"> [ 52.]]</span>
+</pre></div>
+</div>
+<p>Tout objet <tt class="docutils literal"><span class="pre">array</span></tt> est convertible en type <tt class="docutils literal"><span class="pre">mat</span></tt> et réciproquement (sous la condition que le
+tableau (<tt class="docutils literal"><span class="pre">array</span></tt>) soit {uni,bi}-dimensionnel)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">matrix([[1, 2, 4]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="construire">
+<h2>Construire<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#construire" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous avons déjà vu comment accéder aux éléments d’un tableau soit par <tt class="docutils literal"><span class="pre">a[i,j]</span></tt> soit par le <cite>slicing</cite>.
+Pour définir certaines matrices (au sens <tt class="docutils literal"><span class="pre">array</span></tt> {uni,bi}-dimensionnel) il est possible
+d’utiliser les boucles, des matrices prédéfinies de Numpy (Scipy) et les opérations élémentaires
+(multiplication par un scalaire, produit matriciel, transposition, produit de Kronecker,
+jeu avec les booléens, etc).</p>
+<p>Numpy propose <tt class="docutils literal"><span class="pre">arange</span></tt> équivalent de <tt class="docutils literal"><span class="pre">range</span></tt> mais de type <tt class="docutils literal"><span class="pre">array</span></tt>, ce qui évite une conversion.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
+<span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span> <span class="mf">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="go">array([ 2., 3., 4., 5., 6., 7., 8., 9.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="go">array([ 2. , 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3</span><span class="p">)</span>
+<span class="go">array([0, 1, 2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="go">array([ 0.,  1.,  2.])</span>
+</pre></div>
+</div>
+<p>Comme il y quelques subtilités dans la fonction <tt class="docutils literal"><span class="pre">range</span></tt> et <tt class="docutils literal"><span class="pre">arange</span></tt> quant au dernier élément, Pour
+éviter tout désagrément la fonction <tt class="docutils literal"><span class="pre">linspace(premier,dernier,n)</span></tt> renvoie un <tt class="docutils literal"><span class="pre">array</span></tt> commençant
+par <tt class="docutils literal"><span class="pre">premier</span></tt>, se terminant par <tt class="docutils literal"><span class="pre">dernier</span></tt> avec <tt class="docutils literal"><span class="pre">n</span></tt> éléments régulièrement espacés.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">6</span><span class="p">)</span>
+<span class="go">array([ 1. ,  1.6,  2.2,  2.8,  3.4,  4. ])</span>
+</pre></div>
+</div>
+<p>Numpy propose le redimensionnement d’un tableau avec la fonction <tt class="docutils literal"><span class="pre">reshape</span></tt>. Il faut tout de
+même respecter une condition : le nombre d’éléments doit être le même !</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">16</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span>
+<span class="go">array([[ 0,  1,  2,  3],</span>
+<span class="go">       [ 4,  5,  6,  7],</span>
+<span class="go">       [ 8,  9, 10, 11],</span>
+<span class="go">       [12, 13, 14, 15]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="mf">8</span><span class="p">)</span>
+<span class="go">array([[ 0,  1,  2,  3,  4,  5,  6,  7],</span>
+<span class="go">       [ 8,  9, 10, 11, 12, 13, 14, 15]])</span>
+</pre></div>
+</div>
+<p>Il est possible aussi de transformer un <tt class="docutils literal"><span class="pre">array</span></tt> bi-dimensionnel en un <tt class="docutils literal"><span class="pre">array</span></tt> uni-dimensionnel
+avec <tt class="docutils literal"><span class="pre">reshape</span></tt> ou <tt class="docutils literal"><span class="pre">flatten</span></tt>. L’instruction <tt class="docutils literal"><span class="pre">b.flatten()</span></tt> renvoie
+une copie de <tt class="docutils literal"><span class="pre">b</span></tt>, ce qui n’est pas le cas de <tt class="docutils literal"><span class="pre">reshape</span></tt>.
+Ici un exemple avec la syntaxe <tt class="docutils literal"><span class="pre">np.reshape(array,dimension)</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">),</span><span class="nb">float</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
+<span class="go">[[ 2.  1.  1.  1.]</span>
+<span class="go"> [ 1.  2.  1.  1.]</span>
+<span class="go"> [ 1.  1.  2.  1.]</span>
+<span class="go"> [ 1.  1.  1.  2.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mf">16</span><span class="p">)</span>
+<span class="go">array([ 2.,  1.,  1.,  1.,  1.,  2.,  1.,  1.,  1.,  1.,  2.,  1.,  1.,</span>
+<span class="go">        1.,  1.,  2.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">b</span><span class="p">,(</span><span class="mf">2</span><span class="p">,</span><span class="mf">8</span><span class="p">))</span>
+<span class="go">array([[ 2.,  1.,  1.,  1.,  1.,  2.,  1.,  1.],</span>
+<span class="go">       [ 1.,  1.,  2.,  1.,  1.,  1.,  1.,  2.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="go">array([ 2.,  1.,  1.,  1.,  1.,  2.,  1.,  1.,  1.,  1.,  2.,  1.,  1.,</span>
+<span class="go">        1.,  1.,  2.])</span>
+</pre></div>
+</div>
+<p>Numpy permet d’assembler les vecteurs et les matrices, de les concaténer. Par défaut
+l’assemblage se fait selon la 1ère dimension (les lignes, donc assemblage vertical). L’option <tt class="docutils literal"><span class="pre">axis=1</span></tt> assemble “horizontalement”.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="mf">4</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[4, 5],</span>
+<span class="go">       [6, 7]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">+</span><span class="mf">6</span><span class="p">)[</span><span class="n">newaxis</span><span class="p">,:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="go">array([[0, 1],</span>
+<span class="go">       [2, 3],</span>
+<span class="go">       [4, 5],</span>
+<span class="go">       [6, 7]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([[0, 1],</span>
+<span class="go">       [2, 3],</span>
+<span class="go">       [4, 5],</span>
+<span class="go">       [6, 7]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">array([[0, 1, 4, 5],</span>
+<span class="go">       [2, 3, 6, 7]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)))</span>
+<span class="go">array([[6, 7, 8, 9],</span>
+<span class="go">       [6, 7, 8, 9],</span>
+<span class="go">       [0, 1, 4, 5],</span>
+<span class="go">       [2, 3, 6, 7]])</span>
+</pre></div>
+</div>
+<p>Pour concaténer un vecteur et une matrice
+il est nécessaire de convertir le vecteur en matrice à 1 ligne (ou 1 colonne).
+Par rapport à Matlab/Scilab c’est bien dommage. Au passage la commande <tt class="docutils literal"><span class="pre">np.newaxis</span></tt> permet
+d’ajouter une dimension à un tableau (si <tt class="docutils literal"><span class="pre">b</span></tt> est un tableau unidimensionnel
+<tt class="docutils literal"><span class="pre">b[np.newaxis,:]</span></tt> retournera une matrice à 1 ligne tandis que <tt class="docutils literal"><span class="pre">b[:,np.newaxis]</span></tt>
+retournera une matrice à 1 colonne).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">+</span><span class="mf">6</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">+</span><span class="mf">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;stdin&gt;"</span>, line <span class="m">1</span>, in <span class="n-Identifier">&lt;module&gt;</span>
+<span class="nc">ValueError</span>: <span class="n-Identifier">arrays must have same number of dimensions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;stdin&gt;"</span>, line <span class="m">1</span>, in <span class="n-Identifier">&lt;module&gt;</span>
+<span class="nc">ValueError</span>: <span class="n-Identifier">arrays must have same number of dimensions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:]),</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([[6, 7, 8, 9],</span>
+<span class="go">       [6, 7, 8, 9]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">c</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">d</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([[6],</span>
+<span class="go">       [7],</span>
+<span class="go">       [8],</span>
+<span class="go">       [9],</span>
+<span class="go">       [6],</span>
+<span class="go">       [7],</span>
+<span class="go">       [8],</span>
+<span class="go">       [9]])</span>
+</pre></div>
+</div>
+<p>Le “slicing” permet d’extraire des éléments d’un vecteur ou matrice. Il existe aussi
+la commande <tt class="docutils literal"><span class="pre">np.take</span></tt> qui extrait lignes/colonnes d’un <tt class="docutils literal"><span class="pre">array</span></tt>. L’option <tt class="docutils literal"><span class="pre">axis</span></tt> détermine
+une extraction selon les lignes/colonnes. La syntaxe se comprend aisément.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">16</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">3</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">array([[ 0,  3],</span>
+<span class="go">       [ 4,  7],</span>
+<span class="go">       [ 8, 11],</span>
+<span class="go">       [12, 15]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">3</span><span class="p">])</span>
+<span class="go">array([0, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">3</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([[ 0,  1,  2,  3],</span>
+<span class="go">       [12, 13, 14, 15]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([[ 0,  1,  2,  3],</span>
+<span class="go">       [12, 13, 14, 15],</span>
+<span class="go">       [ 8,  9, 10, 11],</span>
+<span class="go">       [ 8,  9, 10, 11],</span>
+<span class="go">       [ 8,  9, 10, 11]])</span>
+</pre></div>
+</div>
+<p>La réciproque de <tt class="docutils literal"><span class="pre">np.take</span></tt> est <tt class="docutils literal"><span class="pre">np.put</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">],</span><span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">9</span><span class="p">,</span><span class="mf">8</span><span class="p">,</span><span class="mf">7</span><span class="p">],</span><span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">3</span><span class="p">],</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 9.,  1.,  2.,  8.,  4.,  5.])</span>
+</pre></div>
+</div>
+<p>Comme deux positions seulement ont été données, seules la valeurs 0 et 3 ont été
+remplacées.</p>
+</div>
+<div class="section" id="matrices-particuli-res">
+<h2>Matrices particulières<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#matrices-particuli-res" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous avons déjà utilisé certaines commandes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%">
+<col width="66%">
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Commande</th>
+<th class="head">Description (rapide)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">np.zeros(n)</span> <span class="pre">((n,p))</span></tt></td>
+<td>vecteur nul   de taille <tt class="docutils literal"><span class="pre">n</span></tt>, matrice nulle de taille <tt class="docutils literal"><span class="pre">n,p</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">np.eye(n)</span> <span class="pre">((n,p))</span></tt></td>
+<td>matrice de taille <tt class="docutils literal"><span class="pre">n</span></tt> (<tt class="docutils literal"><span class="pre">n,p</span></tt>) avec des 1 sur la diagonale
+et des zéros ailleurs</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">np.ones(n)</span> <span class="pre">((n,p))</span></tt></td>
+<td>vecteur de taille <tt class="docutils literal"><span class="pre">n</span></tt>, matrice de taille <tt class="docutils literal"><span class="pre">n,p</span></tt> remplie de 1</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">np.diag(v)</span></tt></td>
+<td>matrice diagonale dont la diagonale est le vecteur <tt class="docutils literal"><span class="pre">v</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">np.diag(v,k)</span></tt></td>
+<td>matrice dont la ‘diagonale’ décalée de <tt class="docutils literal"><span class="pre">k</span></tt> est le vecteur <tt class="docutils literal"><span class="pre">v</span></tt>
+(<tt class="docutils literal"><span class="pre">k</span></tt> est un entier relatif)</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">np.random.rand(n)</span> <span class="pre">((n,p))</span></tt></td>
+<td>vecteur (taille <tt class="docutils literal"><span class="pre">n</span></tt>), matrice (taille <tt class="docutils literal"><span class="pre">n,p</span></tt>) à coefficients
+aléatoires uniformes sur [0,1]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span>
+<span class="go">array([ 1.,  1.,  1.,  1.,  1.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mf">2</span><span class="p">)</span>
+<span class="go">array([[ 0.,  0.,  1.,  0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  1.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.,  1.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.,  0.,  1.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.,  0.,  0.,  1.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">array([[ 0.,  0.,  0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 1.,  0.,  0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  1.,  0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  1.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  1.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.,  1.,  0.]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="op-rations">
+<h2>Opérations<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#op-rations" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’opérateur <tt class="docutils literal"><span class="pre">+</span></tt> additionne terme à terme deux tableaux de même dimension. La commande <tt class="docutils literal"><span class="pre">2.+a</span></tt> renvoie
+le vecteur/matrice dont tous les éléments sont ceux de <tt class="docutils literal"><span class="pre">a</span></tt> plus 2. Multplier un vecteur/matrice
+par un scalaire se fait selon le même principe : la commande <tt class="docutils literal"><span class="pre">2*a</span></tt> renvoie le vecteur/matrice de même dimension dont tous les éléments ont été multipliés par 2.</p>
+<p>L’opérateur <tt class="docutils literal"><span class="pre">*</span></tt> ne fait que multiplier terme à terme deux tableaux de même dimension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mf">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5</span><span class="p">])</span>
+<span class="go">array([[  8.,   0.,   0.,   0.],</span>
+<span class="go">       [  0.,  12.,   0.,   0.],</span>
+<span class="go">       [  0.,   0.,  16.,   0.],</span>
+<span class="go">       [  0.,   0.,   0.,  20.]])</span>
+</pre></div>
+</div>
+<p>Dans le même ordre <tt class="docutils literal"><span class="pre">a**3</span></tt> renvoie le vecteur/matrice de même dimension dont tous les
+éléments sont ceux de <tt class="docutils literal"><span class="pre">a</span></tt> élévés à la puissance 3. Devinez ce que fait <tt class="docutils literal"><span class="pre">1./a</span></tt> ?</p>
+<p>Pour le produit matriciel (le vrai) la commande <tt class="docutils literal"><span class="pre">np.dot</span></tt> est là</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="mf">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5</span><span class="p">]))</span>
+<span class="go">array([[  8.,  12.,  16.,  20.],</span>
+<span class="go">       [  8.,  12.,  16.,  20.],</span>
+<span class="go">       [  8.,  12.,  16.,  20.],</span>
+<span class="go">       [  8.,  12.,  16.,  20.]])</span>
+</pre></div>
+</div>
+<p>Si <tt class="docutils literal"><span class="pre">v</span></tt> est un vecteur (<tt class="docutils literal"><span class="pre">array</span></tt> uni-dimensionnel) et <tt class="docutils literal"><span class="pre">A</span></tt> une matrice (<tt class="docutils literal"><span class="pre">array</span></tt> bi-dimensionnel)
+alors <tt class="docutils literal"><span class="pre">np.dot(A,v)</span></tt> renvoie le produit <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/a2db5127793689e189952996323b4fb17844dea6.png" alt="Av"> tandis que <tt class="docutils literal"><span class="pre">np.dot(v,A)</span></tt> renvoie <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/5b7e3afb8d5c344e8a3434b41f1a7b8ae013d44c.png" alt="v^tA">.
+Si le produit n’est pas possible, Python vous le signale.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">3</span><span class="p">,</span><span class="mf">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="go">array([2, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="go">array([4, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">v</span><span class="p">,</span><span class="n">v</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span>
+<span class="go">array([-3,  2, -3,  2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;stdin&gt;"</span>, line <span class="m">1</span>, in <span class="n-Identifier">&lt;module&gt;</span>
+<span class="nc">ValueError</span>: <span class="n-Identifier">objects are not aligned</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">np.vdot(v,w)</span></tt> : produit scalaire des vecteurs <tt class="docutils literal"><span class="pre">v</span></tt> et <tt class="docutils literal"><span class="pre">w</span></tt>.</p>
+<p>Il y a enfin le produit de Kronecker, <tt class="docutils literal"><span class="pre">np.kron</span></tt>, assez pratique pour créer des matrices/vecteurs
+particuliers. Si <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/019e9892786e493964e145e7c5cf7b700314e53b.png" alt="A"> et <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/ff5fb3d775862e2123b007eb4373ff6cc1a34d4e.png" alt="B"> sont deux matrices non nécessairement de même taille, le produit
+de Kronecker de <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/019e9892786e493964e145e7c5cf7b700314e53b.png" alt="A"> <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/ff5fb3d775862e2123b007eb4373ff6cc1a34d4e.png" alt="B"> est la matrice bloc (<img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/ff5fb3d775862e2123b007eb4373ff6cc1a34d4e.png" alt="B"> de taille <img class="math" src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/95a42d2897e66b2ccfac7a7a1b6ec0520c175835.png" alt="n\times p">)</p>
+<div class="math">
+<p><img src="./Vecteurs, matrices et tableaux — Bien démarrer avec Numpy_Scipy_Matplotlib valpha documentation_files/5aef0e2118e472114d57e3f9432b1bfa427a492e.png" alt="\begin{pmatrix}
+  b_{11}A &amp; b_{12} A &amp; \cdots &amp; b_{1p} A \\
+  \vdots &amp;           &amp;        &amp; \vdots  \\
+  b_{n1}A &amp; b_{n2} A &amp; \cdots &amp; b_{np}A
+\end{pmatrix}"></p>
+</div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
+<span class="go">[[ 0.  1.]</span>
+<span class="go"> [ 2.  3.]] [ 0.  1.  2.  3.  4.]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([[  0.,   0.,   0.,   0.,   0.,   0.,   1.,   2.,   3.,   4.],</span>
+<span class="go">       [  0.,   2.,   4.,   6.,   8.,   0.,   3.,   6.,   9.,  12.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="go">array([[  0.,   0.,   0.,   1.,   0.,   2.,   0.,   3.,   0.,   4.],</span>
+<span class="go">       [  0.,   0.,   2.,   3.,   4.,   6.,   6.,   9.,   8.,  12.]])</span>
+</pre></div>
+</div>
+<p>Un autre exemple qui peut être utilie pour certains exercices.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">1</span><span class="p">,</span><span class="mf">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
+<span class="go">array([[ 0.,  1.,  2.,  3.,  4.],</span>
+<span class="go">       [ 0.,  1.,  2.,  3.,  4.],</span>
+<span class="go">       [ 0.,  1.,  2.,  3.,  4.],</span>
+<span class="go">       [ 0.,  1.,  2.,  3.,  4.],</span>
+<span class="go">       [ 0.,  1.,  2.,  3.,  4.]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bool-ens">
+<h2>Booléens<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#bool-ens" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On rappelle les opérateurs logiques en Python.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%">
+<col width="28%">
+<col width="24%">
+<col width="28%">
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Symbole</th>
+<th class="head">Signification</th>
+<th class="head">Symbole</th>
+<th class="head">Signification</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">a</span> <span class="pre">and</span> <span class="pre">b</span></tt></td>
+<td>a et b</td>
+<td><tt class="docutils literal"><span class="pre">a&gt;b</span></tt></td>
+<td>a&gt;b</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">a</span> <span class="pre">or</span> <span class="pre">b</span></tt></td>
+<td>a ou b</td>
+<td><tt class="docutils literal"><span class="pre">a&gt;=b</span></tt></td>
+<td>a≥b</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">a==b</span></tt></td>
+<td>égalité de a et b</td>
+<td><tt class="docutils literal"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">bb</span></tt></td>
+<td>a différent de b</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">a&lt;b</span></tt></td>
+<td>a&lt;b</td>
+<td><tt class="docutils literal"><span class="pre">a&lt;=b</span></tt></td>
+<td>a≤b</td>
+</tr>
+</tbody>
+</table>
+<p>Comme dans Matlab/Octave/Scilab, Numpy étend <tt class="docutils literal"><span class="pre">==</span></tt>, <tt class="docutils literal"><span class="pre">&lt;</span></tt>, <tt class="docutils literal"><span class="pre">&gt;</span></tt>, <tt class="docutils literal"><span class="pre">&lt;=</span></tt>, <tt class="docutils literal"><span class="pre">&gt;=</span></tt> et <tt class="docutils literal"><span class="pre">!=</span></tt>
+aux vecteurs/matrices (type <tt class="docutils literal"><span class="pre">array</span></tt>) et ajoute le “ou exclusif” avec <tt class="docutils literal"><span class="pre">np.logical_xor(a,b)</span></tt>.
+Les opérateurs de comparaisons <tt class="docutils literal"><span class="pre">==</span></tt>, <tt class="docutils literal"><span class="pre">&lt;</span></tt>, <tt class="docutils literal"><span class="pre">&gt;</span></tt>, <tt class="docutils literal"><span class="pre">&lt;=</span></tt>, <tt class="docutils literal"><span class="pre">&gt;=</span></tt> et <tt class="docutils literal"><span class="pre">!=</span></tt> existent aussi respectivement sous les noms  de
+<tt class="docutils literal"><span class="pre">equal(a,b)</span></tt>, <tt class="docutils literal"><span class="pre">np.less(a,b)</span></tt>, <tt class="docutils literal"><span class="pre">np.greater(a,b)</span></tt>, <tt class="docutils literal"><span class="pre">np.less_equal(a,b)</span></tt>, <tt class="docutils literal"><span class="pre">np.greater_equal(a,b)</span></tt>
+et <tt class="docutils literal"><span class="pre">np.not_equal(a,b)</span></tt>.</p>
+<p>Ce qui est formidable avec Numpy (si si) : <tt class="docutils literal"><span class="pre">a</span></tt> et <tt class="docutils literal"><span class="pre">b</span></tt> étant deux <tt class="docutils literal"><span class="pre">array</span></tt> de
+tailles identiques, la commande <tt class="docutils literal"><span class="pre">a&lt;b</span></tt> renvoie un <tt class="docutils literal"><span class="pre">array</span></tt> de taille égale à celle de <tt class="docutils literal"><span class="pre">a</span></tt> dont
+les éléments sont des booléens et correspondent au test <tt class="docutils literal"><span class="pre">&lt;</span></tt> terme à terme. Voici
+une illustration plus compréhensible</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="mf">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mf">4</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span><span class="mf">1</span><span class="p">)</span><span class="o">+</span><span class="mf">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">16</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([[ True, False, False, False],</span>
+<span class="go">       [False,  True, False, False],</span>
+<span class="go">       [False, False, False, False],</span>
+<span class="go">       [False, False, False, False]], dtype=bool)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([[False, False,  True, False],</span>
+<span class="go">       [False, False, False, False],</span>
+<span class="go">       [False, False, False, False],</span>
+<span class="go">       [False, False, False, False]], dtype=bool)</span>
+</pre></div>
+</div>
+<p>Si les deux arguments sont de tailles différentes, Python vous insulte. Mais si
+<tt class="docutils literal"><span class="pre">a</span></tt> ou <tt class="docutils literal"><span class="pre">b</span></tt> est de type <tt class="docutils literal"><span class="pre">float</span></tt> ou <tt class="docutils literal"><span class="pre">int</span></tt>,  la commande <tt class="docutils literal"><span class="pre">a&lt;2</span></tt> renvoie le tableau
+de taille égale à celle de <tt class="docutils literal"><span class="pre">a</span></tt> correspondant à comparaison des éléments
+de <tt class="docutils literal"><span class="pre">a</span></tt> avec 2.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">a</span><span class="o">&lt;</span><span class="mf">2.</span><span class="p">)</span>
+<span class="go">array([[ True,  True, False, False],</span>
+<span class="go">       [False, False, False, False],</span>
+<span class="go">       [False, False, False, False],</span>
+<span class="go">       [False, False, False, False]], dtype=bool)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mf">2</span><span class="o">&lt;</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([[ True, False, False, False],</span>
+<span class="go">       [False,  True, False, False],</span>
+<span class="go">       [False, False,  True, False],</span>
+<span class="go">       [False, False, False,  True]], dtype=bool)</span>
+</pre></div>
+</div>
+<p>Encore plus formidable, si <tt class="docutils literal"><span class="pre">d</span></tt> est un tableau de booléens de taille
+égale à celle de <tt class="docutils literal"><span class="pre">a</span></tt>, <tt class="docutils literal"><span class="pre">a[d]</span></tt> extrait les éléments de <tt class="docutils literal"><span class="pre">a</span></tt>
+qui correspondent à la valeur <tt class="xref docutils literal"><span class="pre">True</span></tt> dans <tt class="docutils literal"><span class="pre">d</span></tt>. La commande
+<tt class="docutils literal"><span class="pre">b[b&lt;4]</span></tt> renvoie les éléments de <tt class="docutils literal"><span class="pre">b</span></tt> strictement inférieurs à 4.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="mf">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mf">4</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span><span class="mf">1</span><span class="p">)</span><span class="o">+</span><span class="mf">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[ 8., -2.,  2.,  2.],</span>
+<span class="go">       [ 2.,  8., -3.,  2.],</span>
+<span class="go">       [ 2.,  2.,  8., -4.],</span>
+<span class="go">       [ 2.,  2.,  2.,  8.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="n">b</span><span class="o">&lt;</span><span class="mf">4</span><span class="p">]</span>
+<span class="go">array([-2.,  2.,  2.,  2., -3.,  2.,  2.,  2., -4.,  2.,  2.,  2.])</span>
+</pre></div>
+</div>
+<p>(à faire : <tt class="docutils literal"><span class="pre">np.all()</span></tt> <tt class="docutils literal"><span class="pre">np.any()</span></tt>, <cite>np.where`</cite>)</p>
+</div>
+<div class="section" id="autres-commandes">
+<h2>Autres commandes<a class="headerlink" href="http://math.mad.free.fr/depot/numpy/base.html#autres-commandes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Numpy permet de “vectoriser”, i.e. appliquer une fonction à un vecteur/matrice et
+éviter les boucles. Comme
+nous avons choisi d’utiliser Numpy à travers <tt class="docutils literal"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></tt>, il faut
+choisir les fonctions usuelles définies dans Numpy</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 0.,  1.,  2.,  3.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;stdin&gt;"</span>, line <span class="m">1</span>, in <span class="n-Identifier">&lt;module&gt;</span>
+<span class="nc">TypeError</span>: <span class="n-Identifier">only length-1 arrays can be converted to Python scalars</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">array([ 1.        ,  0.54030231, -0.41614684, -0.9899925 ])</span>
+</pre></div>
+</div>
+<p>Minimum/maximum global ou selon une direction : <tt class="docutils literal"><span class="pre">np.amin</span></tt> et <tt class="docutils literal"><span class="pre">np.amax</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mf">2</span><span class="p">,</span><span class="mf">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([[0, 1],</span>
+<span class="go">       [2, 3]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>           <span class="c"># élément minimum</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>         <span class="c"># minimum selon ligne</span>
+<span class="go">array([0, 1])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>         <span class="c"># minimum selon colonne</span>
+<span class="go">array([0, 2])</span>
+</pre></div>
+</div>
+<p>Les commandes <tt class="docutils literal"><span class="pre">np.argmin</span></tt> et <tt class="docutils literal"><span class="pre">np.argmax</span></tt> retournent l’indice ou le tableau d’indices des éléments réalisant les extrema. Si plusieurs éléments réalisent l’extrema seul le premier indice est retourné.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="mf">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mf">4</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span><span class="mf">1</span><span class="p">)</span><span class="o">+</span><span class="mf">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[ 8., -2.,  2.,  2.],</span>
+<span class="go">       [ 2.,  8., -3.,  2.],</span>
+<span class="go">       [ 2.,  2.,  8., -4.],</span>
+<span class="go">       [ 2.,  2.,  2.,  8.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">array([1, 2, 3, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([1, 0, 1, 2])</span>
+</pre></div>
+</div>
+<p>Les sommes, produits de tous les éléments ou selon les lignes/colonnes se font
+aisément avec <tt class="docutils literal"><span class="pre">np.sum</span></tt> et <tt class="docutils literal"><span class="pre">np.prod</span></tt>. À vous de vérifier que les résultats
+sont justes.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="mf">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mf">4</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span><span class="mf">1</span><span class="p">)</span><span class="o">+</span><span class="mf">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mf">4</span><span class="p">,</span><span class="mf">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">41.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">-50331648.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">array([ 14.,  10.,   9.,   8.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">array([ 10.,   9.,   8.,  14.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">array([ -64.,  -96., -128.,   64.])</span>
+</pre></div>
+</div>
+<p>Pour faire les moyennes de tous les éléments ou selon les lignes/colonnes, <tt class="docutils literal"><span class="pre">np.mean</span></tt> a le fonctionnement attendu.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="http://math.mad.free.fr/depot/numpy/essai.html">Table des matières</a></h3>
+            <ul>
+<li><a class="reference external" href="">Vecteurs, matrices et tableaux</a><ul>
+<li><a class="reference external" href="http://math.mad.free.fr/depot/numpy/base.html#les-bases">Les bases</a></li>
+<li><a class="reference external" href="http://math.mad.free.fr/depot/numpy/base.html#construire">Construire</a></li>
+<li><a class="reference external" href="http://math.mad.free.fr/depot/numpy/base.html#matrices-particuli-res">Matrices particulières</a></li>
+<li><a class="reference external" href="http://math.mad.free.fr/depot/numpy/base.html#op-rations">Opérations</a></li>
+<li><a class="reference external" href="http://math.mad.free.fr/depot/numpy/base.html#bool-ens">Booléens</a></li>
+<li><a class="reference external" href="http://math.mad.free.fr/depot/numpy/base.html#autres-commandes">Autres commandes</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Sujet précédent</h4>
+            <p class="topless"><a href="http://math.mad.free.fr/depot/numpy/intro.html" title="Chapitre précédent">Introduction</a></p>
+            <h4>Sujet suivant</h4>
+            <p class="topless"><a href="http://math.mad.free.fr/depot/numpy/calmat.html" title="Chapitre suivant">Calcul numérique matriciel</a></p>
+            <h3>Cette page</h3>
+            <ul class="this-page-menu">
+              <li><a href="http://math.mad.free.fr/depot/numpy/_sources/base.txt" rel="nofollow">Montrer la source</a></li>
+            </ul>
+          <div id="searchbox" style="">
+            <h3>Recherche rapide</h3>
+              <form class="search" action="http://math.mad.free.fr/depot/numpy/search.html" method="get">
+                <input type="text" name="q" size="18">
+                <input type="submit" value="Go">
+                <input type="hidden" name="check_keywords" value="yes">
+                <input type="hidden" name="area" value="default">
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="http://math.mad.free.fr/depot/numpy/genindex.html" title="Index général">index</a></li>
+        <li class="right">
+          <a href="http://math.mad.free.fr/depot/numpy/calmat.html" title="Calcul numérique matriciel">suivant</a> |</li>
+        <li class="right">
+          <a href="http://math.mad.free.fr/depot/numpy/intro.html" title="Introduction">précédent</a> |</li>
+        <li><a href="http://math.mad.free.fr/depot/numpy/essai.html">Bien démarrer avec Numpy/Scipy/Matplotlib valpha documentation</a> »</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      © Copyright 2009, Olivier Guibé.
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  
+</body></html>
