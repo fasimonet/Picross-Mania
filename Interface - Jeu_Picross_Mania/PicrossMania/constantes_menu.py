@@ -2,6 +2,7 @@
 #Constantes du programme "grille"
 
 import pygame
+import os
 from pygame.locals import *
 
 #===============================================================================
@@ -38,7 +39,7 @@ TITRE_FENETRE = "Picross Mania"
             #--------------------
 
 #Bouton du tutoriel
-BOUTON_TUTORIEL = pygame.image.load("tutoriel.PNG")
+BOUTON_TUTORIEL = pygame.image.load("tutoriel.png")
 #Bouton retour
 BOUTON_RETOUR = pygame.image.load("retour.PNG")
 BOUTON_VALIDER = pygame.image.load("valider.PNG")
